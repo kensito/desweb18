@@ -29,16 +29,23 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="nome">Nome:</label>
 							<div class="col-lg-8 col-md-8 col-sm-8">
-								<input type="text" class="form-control" id="nome" name="nome" value="${ modalidade.nome }" placeholder="Insira o nome do país" required="required"/>
+								<input type="text" class="form-control" id="nome" name="nome" value="${ modalidade.nome }" placeholder="Insira o nome da modalidade" required="required"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="populacao">Tipo:</label>
 							<div class="col-lg-2 col-md-2 col-sm-2">
 								<select name="tipo" id="tipo" class="form-control" required="required">
-									<option value="" ${ modalidade.tipo = '' ? 'selected disabled' : '' }>Selecione</option>
-			                    		<option value="I" ${ modalidade.tipo = 'I' ? 'selected' : '' }>Inverno</option>
-			                    		<option value="V" ${ modalidade.tipo = 'V' ? '' : 'selected' }>Verão</option>
+									<c:if test="${ empty modalidade.tipo }">
+										<option value="" selected disabled>Selecione</option>
+			                    		<option value="I">Inverno</option>
+			                    		<option value="V">Verão</option>
+									</c:if>
+									<c:if test="${ not empty modalidade.tipo }">
+			                    		<option value="I" ${ modalidade.tipo == modalidade.inverno ? 'selected' : '' }>Inverno</option>
+			                    		<option value="V" ${ modalidade.tipo == modalidade.verao ? 'selected' : '' }>Verão</option>
+									</c:if>
+									
 								</select>
 							</div>
 						</div>

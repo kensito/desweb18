@@ -24,7 +24,6 @@ public class PaisController extends HttpServlet {
      */
     public PaisController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -38,6 +37,8 @@ public class PaisController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Retorna qual o nome da rota está acessando. Servirá para controle do active do menu.
+		request.setAttribute("menu", request.getServletPath());
 		String tipoAcao, pagina = "";
 		PaisService ps = new PaisService();
 		RequestDispatcher view;
@@ -65,8 +66,8 @@ public class PaisController extends HttpServlet {
 		}else if(tipoAcao.equals("Gravar")) {
 			//Monta objeto com parametros recebidos da request.
 			int idPais = 0;
-			
-			if((request.getParameter("id") == null) || (request.getParameter("id").isEmpty())) {	
+
+			if((request.getParameter("id") != null) && !(request.getParameter("id").isEmpty())) {	
 				idPais = Integer.parseInt(request.getParameter("id"));
 			}
 			String nomePais = request.getParameter("nome");

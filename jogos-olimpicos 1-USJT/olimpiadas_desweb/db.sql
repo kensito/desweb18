@@ -25,18 +25,21 @@ create table if not exists ano (
 );
 
 create table if not exists olimpiada (
-	id_olimpiada bigint not null,
-	identificador not null auto_increment,
+    id_olimpiada int not null auto_increment,
 	ouro int not null,
 	prata int not null,
 	bronze int not null,
 	tipo char not null,
 	idPais int,
 	idAno int,
-	foreign key (idPais) references pais(id_pais), 
-	foreign key (idAno) references ano(ano),  
-	constraint pk_olimpiada primary key (id_olimpiada)
+    idModalidade int,
+    constraint pk_olimpiada primary key (id_olimpiada),
+    constraint fk_id_pais foreign key (idPais) references pais(id_pais),
+    constraint fk_id_ano foreign key (idPais) references pais(id_pais),
+    constraint fk_id_modalidade foreign key (idModalidade) references modalidade(id_modalidade)
 );
+
+select * from olimpiada;
 
 insert into pais (nome, populacao, area) values ("China", "1379302771", "9596961");
 insert into pais (nome, populacao, area) values ("Estados Unidos", "308745538", "9371175");

@@ -2,6 +2,9 @@ package usjt.olimpiada.model;
 
 public class Modalidade {
 
+	public static char VERAO = 'V';
+	public static char INVERNO = 'I';
+	
 	private int id;
 	private String nome;
 	private char tipo;
@@ -33,6 +36,12 @@ public class Modalidade {
 	}
 	public void setTipo(char tipo) {
 		this.tipo = tipo;
+	}
+	public char getVerao() {
+		return VERAO;
+	}
+	public char getInverno() {
+		return INVERNO;
 	}
 	
 	@Override

@@ -20,7 +20,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3>
-						<span class="glyphicon glyphicon-book"></span> Modalidades
+						<span class="glyphicon glyphicon-star"></span> Quadro de Medalhas
 					</h3>
 				</div>
 				<div class="panel-body">
@@ -28,14 +28,14 @@
 						<p>
 							<div class="alert alert-info" role="alert">
 								<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-								Lista de Modalidades Olímpicas cadastradas no sistema
+								Quadro de Medalhas de Países cadastrados.
 							</div>
 						</p>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6">
 						<br />
 						<div>
-							<a href="modalidades?acao=Novo" type="button" class="btn btn-success" >Cadastrar Nova Modalidade</a>
+							<a href="quadro_medalhas?acao=Novo" type="button" class="btn btn-success" >Cadastrar Quadro</a>
 						</div>
 					</div>
 				</div>
@@ -44,26 +44,34 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>Nome</th>
+							<th>País</th>
+							<th>Ano</th>
 							<th>Tipo</th>
+							<th>Ouro</th>
+							<th>Prata</th>
+							<th>Bronze</th>
+							<th>Total</th>
 							<th>Funções</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="modalidade" items="${ modalidades }">
+						<c:forEach var="quadro" items="${ quadros }">
 							<tr>
-								<td>${ modalidade.id }</td>
-								<td>${ modalidade.nome }</td>
-								<c:if test="${ modalidade.tipo eq modalidade.inverno}">
+								<td>${ quadro.pais.nome }</td>
+								<td>${ quadro.ano.ano }</td>
+								<c:if test="${quadro.tipo == quadro.ano.inverno}">
 									<td>Inverno</td>
 								</c:if>
-								<c:if test="${ modalidade.tipo eq modalidade.verao}">
+								<c:if test="${quadro.tipo == quadro.ano.verao}">
 									<td>Verão</td>
 								</c:if>
+								<td>${ quadro.ouro }</td>
+								<td>${ quadro.prata }</td>
+								<td>${ quadro.bronze }</td>
+								<td>${ quadro.ouro + quadro.prata + quadro.bronze }</td>
 								<td>
-									<a href="modalidades?acao=Editar&id=${ modalidade.id }" type="button" class="btn btn-warning">Consultar</a>
-									<a href="modalidades?acao=Excluir&id=${ modalidade.id }" type="button" class="btn btn-danger">Excluir</a>
+									<a href="quadro_medalhas?acao=Editar&pais=${ quadro.pais.id }&ano=${ quadro.ano.ano }&modalidade=${ quadro.modalidade.id }" type="button" class="btn btn-warning">Consultar</a>
+									<a href="quadro_medalhas?acao=Excluir&pais=${ quadro.pais.id }&ano=${ quadro.ano.ano }&modalidade=${ quadro.modalidade.id }" type="button" class="btn btn-danger">Excluir</a>
 								</td>
 							</tr>
 						</c:forEach>

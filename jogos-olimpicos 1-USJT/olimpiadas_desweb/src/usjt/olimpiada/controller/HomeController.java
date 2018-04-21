@@ -9,10 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import usjt.olimpiada.service.AnoService;
-import usjt.olimpiada.service.ModalidadeService;
-import usjt.olimpiada.service.PaisService;
-
 /**
  * Servlet implementation class HomeController
  */
@@ -39,14 +35,8 @@ public class HomeController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		AnoService as = new AnoService();
-		ModalidadeService ms = new ModalidadeService();
-		PaisService ps = new PaisService();
-		
-		request.setAttribute("anos", as.buscaAnos());
-		request.setAttribute("modalidades", ms.buscaModalidades());
-		request.setAttribute("paises", ps.buscaPaises());
+		//Retorna qual o nome da rota está acessando. Servirá para controle do active do menu.
+		request.setAttribute("menu", request.getServletPath());
 		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/Home.jsp");
 		view.forward(request, response);

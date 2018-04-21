@@ -22,8 +22,8 @@ public class AnoService {
 		dao.excluir(ano);
 	}
 
-	public void carregar(Ano ano) {
-		dao.carregar(ano);
+	public Ano carregar(int idAno) {
+		return dao.carregar(idAno);
 	}
 	
 	public ArrayList<Ano> buscaAnos() throws IOException {

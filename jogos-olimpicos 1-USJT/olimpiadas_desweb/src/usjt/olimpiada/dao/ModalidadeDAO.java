@@ -77,6 +77,7 @@ public class ModalidadeDAO {
 			stm.setInt(1, idModalidade);
 			try (ResultSet rs = stm.executeQuery();) {
 				if (rs.next()) {
+					modalidade.setId(idModalidade);
 					modalidade.setNome(rs.getString("nome"));
 					modalidade.setTipo(rs.getString("tipo").charAt(0));
 				} else {

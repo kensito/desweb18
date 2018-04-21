@@ -1,5 +1,8 @@
 package usjt.olimpiada.service;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import usjt.olimpiada.dao.OlimpiadaDAO;
 import usjt.olimpiada.model.Olimpiada;
 
@@ -7,36 +10,25 @@ public class OlimpiadaService {
 
 	OlimpiadaDAO dao = new OlimpiadaDAO();
 	
-	public int geraId(int ano, int modalidade, int pais) {
-		String id = ""+ano+""+modalidade+""+pais;
-		
-		return Integer.parseInt(id);
-	}
-	
-	public boolean criar(Olimpiada olimpiada, int ano, int modalidade, int pais ) {
-		olimpiada.setId(geraId(ano, modalidade, pais));
+	public boolean criar(Olimpiada olimpiada) {
+		olimpiada.setTipo(olimpiada.getAno().getTipo());
 		return dao.criar(olimpiada);
 	}
 	
-	public void atualizar(Olimpiada olimpiada) {
-		dao.atualiza(olimpiada);
+	public boolean atualizar(Olimpiada olimpiada) {
+		return dao.atualiza(olimpiada);
 	}
 
-	public boolean excluir(int idOlimpiada) {
-		return dao.excluir(idOlimpiada);
+	public boolean excluir(Olimpiada olimpiada) {
+		return dao.excluir(olimpiada);
 	}
 
-	public Olimpiada carregar(int idOlimpiada) {
-		return dao.carregar(idOlimpiada);
+	public Olimpiada carregar(Olimpiada olimpiada) {
+		return dao.carregar(olimpiada);
 	}
 	
-	/**
-	 * Olhar o comentario na classe DAO.
-	 * @return
-	 * @throws IOException
-	 */
-	/*public ArrayList<Olimpiada> buscaAnos() throws IOException {
-		return dao.buscaAnos();
-	}*/
+	public ArrayList<Olimpiada> listaQuadro() throws IOException {
+		return dao.listaQuadro();
+	}
 	
 }

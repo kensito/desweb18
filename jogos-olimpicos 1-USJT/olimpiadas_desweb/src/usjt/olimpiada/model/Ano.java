@@ -2,6 +2,9 @@ package usjt.olimpiada.model;
 
 public class Ano {
 
+	public static char VERAO = 'V';
+	public static char INVERNO = 'I';
+	
 	private int Ano;
 	private char tipo;
 	
@@ -25,6 +28,14 @@ public class Ano {
 	}
 	public void setTipo(char tipo) {
 		this.tipo = tipo;
+	}
+	
+	public char getVerao() {
+		return VERAO;
+	}
+	
+	public char getInverno() {
+		return INVERNO;
 	}
 
 	@Override

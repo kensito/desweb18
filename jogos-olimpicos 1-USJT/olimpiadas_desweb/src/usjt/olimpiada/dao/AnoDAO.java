@@ -55,11 +55,12 @@ public class AnoDAO {
 		}
 	}
 
-	public void carregar(Ano ano) {
+	public Ano carregar(int idAno) {
+		Ano ano = new Ano();
 		String sqlSelect = "SELECT ano, tipo FROM ano WHERE ano = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao(); PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
-			stm.setInt(1, ano.getAno());
+			stm.setInt(1, idAno);
 			try (ResultSet rs = stm.executeQuery();) {
 				if (rs.next()) {
 					ano.setAno(rs.getInt("ano"));
@@ -73,12 +74,14 @@ public class AnoDAO {
 		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
 		}
+		
+		return ano;
 
 	}
 	
 	public ArrayList<Ano> buscaAnos() throws IOException {
 		ArrayList<Ano> anos = new ArrayList<>();
-		String sqlSelect = "SELECT ano, tipo FROM ano";
+		String sqlSelect = "SELECT ano, tipo FROM ano order by ano desc";
 		
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {

@@ -24,7 +24,6 @@ public class ModalidadeController extends HttpServlet {
      */
     public ModalidadeController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -38,6 +37,9 @@ public class ModalidadeController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Retorna qual o nome da rota está acessando. Servirá para controle do active do menu.
+		request.setAttribute("menu", request.getServletPath());
+		
 		String tipoAcao, pagina = "";
 		ModalidadeService ms = new ModalidadeService();
 		RequestDispatcher view;
@@ -46,7 +48,7 @@ public class ModalidadeController extends HttpServlet {
 
 		if(tipoAcao == null) {
 			request.setAttribute("modalidades", ms.buscaModalidades());
-			pagina = "/WEB-INF/views/Modalidade.jsp";
+			pagina = "/WEB-INF/views/Modalidades.jsp";
 			
 		}else if(tipoAcao.equals("Novo")) { 
 			pagina = "/WEB-INF/views/FormularioModalidade.jsp";
@@ -66,11 +68,11 @@ public class ModalidadeController extends HttpServlet {
 			//Monta objeto com parametros recebidos da request.
 			int idModalidade = 0;
 			
-			if((request.getParameter("id") == null) || (request.getParameter("id").isEmpty())) {	
+			if((request.getParameter("id") != null) && !(request.getParameter("id").isEmpty())) {	
 				idModalidade = Integer.parseInt(request.getParameter("id"));
 			}
 			String nomeModalidade = request.getParameter("nome");
-			char tipo = request.getParameter("populacao").charAt(0);
+			char tipo = request.getParameter("tipo").charAt(0);
 			
 			//Variavel auxiliar para verificar a gravacao
 			boolean gravado = false;

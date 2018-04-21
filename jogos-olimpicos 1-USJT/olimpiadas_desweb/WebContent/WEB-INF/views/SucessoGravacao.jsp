@@ -25,7 +25,7 @@
 					</div>
 				</p>
 				<p>
-					<a class="btn btn-success btn-lg" href="#" role="button">Voltar</a>
+					<a class="btn btn-success btn-lg" href="inicio" role="button">Voltar</a>
 				</p>
 			</div>
 		</div>
